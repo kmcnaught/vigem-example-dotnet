@@ -15,11 +15,21 @@ namespace vGenControl
         {
 
             Console.WriteLine("Hello World!");
-
-            client = new ViGEmClient();
-            controller = client.CreateXbox360Controller();
-            controller.Connect();
-            Console.WriteLine("Virtual Xbox360 gamepad connected.");
+            try
+            {
+                client = new ViGEmClient();
+                controller = client.CreateXbox360Controller();
+                controller.Connect();
+                Console.WriteLine("Virtual Xbox360 gamepad connected.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Could not connect to ViGEmClient\n");
+                Console.WriteLine(e);
+                Console.WriteLine("\nNote that you need to install ViGemBus for this app to work\n");
+                Console.Read();
+                return;
+            }
 
             int i = 0;
             while (true) 
